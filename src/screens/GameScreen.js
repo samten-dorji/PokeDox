@@ -132,12 +132,18 @@ export default function GameScreen() {
           source={{
             uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${currentPokemon.id}.png`,
           }}
-          style={[
-            styles.pokemonImage,
-            !answered && styles.silhouette,
-          ]}
+          style={styles.pokemonImage}
           resizeMode="contain"
         />
+        {!answered && (
+          <Image
+            source={{
+              uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${currentPokemon.id}.png`,
+            }}
+            style={[styles.pokemonImage, styles.silhouetteOverlay]}
+            resizeMode="contain"
+          />
+        )}
       </View>
 
       {hintUsed && !answered && (
@@ -244,7 +250,8 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
   },
-  silhouette: {
+  silhouetteOverlay: {
+    position: 'absolute',
     tintColor: '#000',
   },
   hintContainer: {
